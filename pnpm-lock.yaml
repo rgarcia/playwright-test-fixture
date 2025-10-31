@@ -17,6 +17,9 @@ importers:
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
+      patchright:
+        specifier: ^1.56.1
+        version: 1.56.1
       playwright:
         specifier: ^1.56.1
         version: 1.56.1
@@ -219,6 +222,16 @@ packages:
   get-tsconfig@4.13.0:
     resolution: {integrity: sha512-1VKTZJCwBrvbd+Wn3AOgQP/2Av+TfTCOlE4AcRJE72W1ksZXbAx8PPBR9RzgTeSPzlPMHrbANMH3LbltH73wxQ==}
 
+  patchright-core@1.56.1:
+    resolution: {integrity: sha512-ot1WU31T+FLjBg8LUbEnPPhzh6uRYji25ZONHpxVUEXtANuVJf6tI4nv6jw6n37qsjgS4u12sq7Go0Vdte3JJQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  patchright@1.56.1:
+    resolution: {integrity: sha512-HY4s3vJNPVoasoy0X7sOm2dufQwlicvXoCpoINYFUWYkEaSBM2l4UtSOdI4/MYQHNskfOFpIqE+Usj748qbtYg==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   playwright-core@1.56.1:
     resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
     engines: {node: '>=18'}
@@ -370,6 +383,14 @@ snapshots:
   get-tsconfig@4.13.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
+
+  patchright-core@1.56.1: {}
+
+  patchright@1.56.1:
+    dependencies:
+      patchright-core: 1.56.1
+    optionalDependencies:
+      fsevents: 2.3.2
 
   playwright-core@1.56.1: {}
 

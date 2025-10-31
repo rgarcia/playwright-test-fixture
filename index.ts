@@ -1,7 +1,8 @@
 import Kernel from '@onkernel/sdk';
 import { BrowserCreateResponse } from '@onkernel/sdk/resources';
-import { test as base, BrowserContext, chromium, Page } from '@playwright/test';
 import 'dotenv/config';
+import { BrowserContext, chromium, Page } from 'patchright';
+import { test as base } from 'patchright/test';
 
 type StealthyFixtures = {
   stealthyPage: Page;
@@ -17,7 +18,11 @@ export const test = base.extend<StealthyFixtures>({
     const kernel = new Kernel({
       apiKey: process.env.KERNEL_API_KEY,
     });
-    const kBrowser = await kernel.browsers.create({ stealth: false, headless: false });
+    const kBrowser = await kernel.browsers.create({
+      stealth: false,
+      headless: false,
+      proxy_id: process.env.KERNEL_PROXY_ID
+    });
     const browser = await chromium.connectOverCDP(kBrowser.cdp_ws_url);
     const context = await browser.newContext({ userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.3' });
     await use({ browserContext: context, kernel, kBrowser });
